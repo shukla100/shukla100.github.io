@@ -248,6 +248,15 @@
     }
 
     /* ── Projects ── */
+    .projects-section-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
     .projects-grid {
       display: flex;
       flex-direction: column;
@@ -261,13 +270,31 @@
       padding: 20px 24px;
       text-decoration: none;
       color: inherit;
-      display: block;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
       transition: border-color 0.15s, background 0.15s;
     }
 
     .project-card:hover {
       border-color: #d1d5db;
       background: #f3f4f6;
+    }
+
+    .project-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .project-body {
+      flex: 1;
+      min-width: 0;
     }
 
     .project-header {
@@ -437,6 +464,7 @@
     <section class="tab-panel" id="tab-projects">
       <p class="about-bio">I love building side projects and exploring new exciting tech outside the bounds of my day job.</p>
       <p class="about-bio-extra">Currently, I'm building projects that make me a more effective PM for engineers, alongside curiosity-driven projects into things that genuinely interest me the most.</p>
+      <div class="projects-section-title">Active Projects</div>
       <div class="projects-grid" id="projects-grid">
         <div class="projects-loading">Loading projects…</div>
       </div>
@@ -466,10 +494,15 @@
       'PhotoWhere---iOS-mobile-application': {
         name: 'PhotoWhere',
         description: 'An iOS app that helps photographers of all levels discover beautiful, photo-worthy locations near them based on their exact location and time of day. Live on the App Store.',
-        url: 'https://apps.apple.com/us/app/photowhere-snap-smarter/id6748592837'
+        url: 'https://apps.apple.com/us/app/photowhere-snap-smarter/id6748592837',
+        icon: '📸',
+        iconBg: '#fff0e6'
       },
       'happyLearning': {
-        description: 'A personal AI-powered learning companion that maps your curiosity — you follow topics wherever your mind goes, and it builds a visual brain map of everything you\'ve explored, remembers it across sessions, and gets smarter about what you know and don\'t know over time.'
+        description: 'A personal AI-powered learning companion that maps your curiosity — you follow topics wherever your mind goes, and it builds a visual brain map of everything you\'ve explored, remembers it across sessions, and gets smarter about what you know and don\'t know over time.',
+        icon: '🧠',
+        iconBg: '#f0f0ff',
+        hideLanguage: true
       }
     };
 
@@ -506,21 +539,27 @@
           const name = ov.name || repo.name;
           const description = ov.description || repo.description;
           const url = ov.url || repo.html_url;
+          const icon = ov.icon || '📁';
+          const iconBg = ov.iconBg || '#f3f4f6';
+          const showLang = !ov.hideLanguage && repo.language;
           return `
             <a class="project-card" href="${url}" target="_blank" rel="noopener">
-              <div class="project-header">
-                <span class="project-name">${name}</span>
-                <span class="project-arrow">↗</span>
-              </div>
-              ${description ? `<div class="project-desc">${description}</div>` : ''}
-              <div class="project-meta">
-                ${repo.language ? `
-                  <span class="project-lang">
-                    <span class="lang-dot ${getLangClass(repo.language)}"></span>
-                    ${repo.language}
-                  </span>` : ''}
-                ${repo.stargazers_count > 0 ? `
-                  <span class="project-stars">★ ${repo.stargazers_count}</span>` : ''}
+              <div class="project-icon" style="background:${iconBg}">${icon}</div>
+              <div class="project-body">
+                <div class="project-header">
+                  <span class="project-name">${name}</span>
+                  <span class="project-arrow">↗</span>
+                </div>
+                ${description ? `<div class="project-desc">${description}</div>` : ''}
+                <div class="project-meta">
+                  ${showLang ? `
+                    <span class="project-lang">
+                      <span class="lang-dot ${getLangClass(repo.language)}"></span>
+                      ${repo.language}
+                    </span>` : ''}
+                  ${repo.stargazers_count > 0 ? `
+                    <span class="project-stars">★ ${repo.stargazers_count}</span>` : ''}
+                </div>
               </div>
             </a>`;
         }).join('');
