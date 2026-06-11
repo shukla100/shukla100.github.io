@@ -35,7 +35,7 @@
 
     /* ── Layout ── */
     .container {
-      max-width: 1100px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 0 48px;
     }
@@ -125,14 +125,21 @@
       margin-bottom: 32px;
     }
 
-    .profile-strip img {
+    .photo-wrap {
       width: 110px;
       height: 110px;
       border-radius: 10px;
-      object-fit: cover;
-      object-position: center 15%;
       border: 1px solid var(--border);
       flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .photo-wrap img {
+      width: 160%;
+      height: 160%;
+      object-fit: cover;
+      object-position: center 8%;
+      margin-left: -30%;
     }
 
     .profile-strip .role {
@@ -360,7 +367,9 @@
 
       <!-- Profile pic + role -->
       <div class="profile-strip">
-        <img id="github-avatar" src="Profile photo.jpg" alt="Garima Shukla" />
+        <div class="photo-wrap">
+          <img src="Profile photo.jpg" alt="Garima Shukla" />
+        </div>
         <div>
           <div class="role">AI Product Manager</div>
           <div class="profile-sub">Building products at VAE</div>
