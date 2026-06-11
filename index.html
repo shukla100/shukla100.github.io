@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Garima Shukla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --accent: #111827;
+      --border: #e5e7eb;
+      --card-bg: #f9fafb;
+      --tag-bg: #f3f4f6;
+      --link: #374151;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 64px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .header-text h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+    }
+
+    .header-text .role {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .header-text .location {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .social-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.15s;
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+    }
+
+    .social-links svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      display: block;
+    }
+
+    /* ── Tabs ── */
+    nav {
+      padding: 24px 0 0;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--muted);
+      padding: 10px 16px;
+      position: relative;
+      transition: color 0.15s;
+    }
+
+    .tab-btn:first-child {
+      padding-left: 0;
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .tab-btn:first-child::after {
+      left: 0;
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .tab-btn.active::after {
+      opacity: 1;
+    }
+
+    /* ── Tab Panels ── */
+    .tab-panel {
+      display: none;
+      padding: 40px 0 80px;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* ── About ── */
+    .about-bio {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    .about-bio strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+
+    .skill-tag {
+      background: var(--tag-bg);
+      color: var(--text);
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-list a {
+      color: var(--link);
+      text-decoration: none;
+      font-size: 0.875rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.15s;
+    }
+
+    .contact-list a:hover {
+      color: var(--accent);
+    }
+
+    /* ── Projects ── */
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .project-card:hover {
+      border-color: #d1d5db;
+      background: #f3f4f6;
+    }
+
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .project-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .project-arrow {
+      color: var(--muted);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .project-desc {
+      font-size: 0.8375rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .project-lang {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.775rem;
+      color: var(--muted);
+    }
+
+    .lang-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #6b7280;
+    }
+
+    .lang-dot.python   { background: #3572A5; }
+    .lang-dot.javascript { background: #f1e05a; }
+    .lang-dot.typescript { background: #2b7489; }
+    .lang-dot.html     { background: #e34c26; }
+    .lang-dot.css      { background: #563d7c; }
+    .lang-dot.shell    { background: #89e051; }
+    .lang-dot.java     { background: #b07219; }
+    .lang-dot.go       { background: #00ADD8; }
+    .lang-dot.rust     { background: #dea584; }
+
+    .project-stars {
+      font-size: 0.775rem;
+      color: var(--muted);
+    }
+
+    .projects-loading,
+    .projects-error {
+      text-align: center;
+      padding: 48px 0;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+      text-align: center;
+      font-size: 0.775rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="header-inner">
+        <div class="header-text">
+          <h1>Garima Shukla</h1>
+          <div class="role">AI Product Manager</div>
+          <div class="location">San Diego, USA</div>
+        </div>
+        <div class="social-links">
+          <!-- GitHub -->
+          <a href="https://github.com/shukla100" target="_blank" rel="noopener" title="GitHub">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/garimashukla100/" target="_blank" rel="noopener" title="LinkedIn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <!-- Email -->
+          <a href="mailto:shuklag524@gmail.com" title="Email">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.9.73-1.636 1.636-1.636h.749L12 11.275l9.615-7.454h.749A1.636 1.636 0 0 1 24 5.457z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Tabs -->
+    <nav>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="about">About</button>
+        <button class="tab-btn" data-tab="projects">Projects</button>
+      </div>
+    </nav>
+
+    <!-- About Panel -->
+    <section class="tab-panel active" id="tab-about">
+      <p class="about-bio">
+        These days I'm at <strong>VAE</strong>, designing AI systems architecture, building MCP servers, and wiring it all together from the ground up.
+      </p>
+
+      <div class="section-label">Skills</div>
+      <div class="skills-grid">
+        <span class="skill-tag">AI Product Management</span>
+        <span class="skill-tag">Systems Architecture</span>
+        <span class="skill-tag">MCP Servers</span>
+        <span class="skill-tag">LLMs</span>
+        <span class="skill-tag">Product Strategy</span>
+        <span class="skill-tag">API Design</span>
+        <span class="skill-tag">Prompt Engineering</span>
+        <span class="skill-tag">Agile</span>
+      </div>
+
+      <div class="section-label">Contact</div>
+      <ul class="contact-list">
+        <li>
+          <a href="mailto:shuklag524@gmail.com">
+            ✉ shuklag524@gmail.com
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/garimashukla100/" target="_blank" rel="noopener">
+            ↗ linkedin.com/in/garimashukla100
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/shukla100" target="_blank" rel="noopener">
+            ↗ github.com/shukla100
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Projects Panel -->
+    <section class="tab-panel" id="tab-projects">
+      <div class="projects-grid" id="projects-grid">
+        <div class="projects-loading">Loading projects…</div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      Garima Shukla · San Diego, USA
+    </div>
+  </footer>
+
+  <script>
+    // ── Tab switching ──
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ── GitHub Projects ──
+    const GITHUB_USERNAME = 'shukla100';
+    const grid = document.getElementById('projects-grid');
+
+    const langColors = {
+      python: 'python', javascript: 'javascript', typescript: 'typescript',
+      html: 'html', css: 'css', shell: 'shell', java: 'java',
+      go: 'go', rust: 'rust'
+    };
+
+    function getLangClass(lang) {
+      if (!lang) return '';
+      return langColors[lang.toLowerCase()] || '';
+    }
+
+    async function loadProjects() {
+      try {
+        const res = await fetch(
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=30`
+        );
+        if (!res.ok) throw new Error('Failed to fetch');
+        const repos = await res.json();
+
+        const filtered = repos
+          .filter(r => !r.fork && r.name !== `${GITHUB_USERNAME}.github.io`)
+          .sort((a, b) => (b.stargazers_count - a.stargazers_count) || new Date(b.updated_at) - new Date(a.updated_at));
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '<div class="projects-loading">No public repositories found.</div>';
+          return;
+        }
+
+        grid.innerHTML = filtered.map(repo => `
+          <a class="project-card" href="${repo.html_url}" target="_blank" rel="noopener">
+            <div class="project-header">
+              <span class="project-name">${repo.name}</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            ${repo.description ? `<div class="project-desc">${repo.description}</div>` : ''}
+            <div class="project-meta">
+              ${repo.language ? `
+                <span class="project-lang">
+                  <span class="lang-dot ${getLangClass(repo.language)}"></span>
+                  ${repo.language}
+                </span>` : ''}
+              ${repo.stargazers_count > 0 ? `
+                <span class="project-stars">★ ${repo.stargazers_count}</span>` : ''}
+            </div>
+          </a>
+        `).join('');
+      } catch (err) {
+        grid.innerHTML = `<div class="projects-error">Couldn't load projects. <a href="https://github.com/${GITHUB_USERNAME}" target="_blank">View on GitHub ↗</a></div>`;
+      }
+    }
+
+    loadProjects();
+  </script>
+
+</body>
+</html>
