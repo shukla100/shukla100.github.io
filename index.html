@@ -43,7 +43,6 @@
     /* ── Header ── */
     header {
       padding: 64px 0 40px;
-      border-bottom: 1px solid var(--border);
     }
 
     .header-text h1 {
@@ -54,7 +53,7 @@
     }
 
     .header-text .role {
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       color: var(--muted);
       margin-top: 4px;
     }
@@ -121,23 +120,25 @@
     /* ── Profile strip ── */
     .profile-strip {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 16px;
       margin-bottom: 32px;
     }
 
     .profile-strip img {
-      width: 168px;
-      height: 168px;
+      width: 80px;
+      height: 80px;
       border-radius: 10px;
       object-fit: cover;
       border: 1px solid var(--border);
+      flex-shrink: 0;
     }
 
     .profile-strip .role {
       font-size: 1.3rem;
       font-weight: 700;
       color: var(--accent);
+      margin-top: 2px;
     }
 
     .profile-sub {
