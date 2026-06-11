@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Garima Shukla</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💅</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -462,7 +462,10 @@
       <p class="about-bio">I love building side projects and exploring new exciting tech outside the bounds of my day job.</p>
       <p class="about-bio-extra">Currently, I'm building projects that make me a more effective PM for engineers, alongside curiosity-driven projects into things that genuinely interest me the most.</p>
       <div class="projects-section-title">Active Projects</div>
-      <div class="projects-grid" id="projects-grid">
+      <div class="projects-grid" id="projects-grid"></div>
+
+      <div class="projects-section-title" id="legacy-title" style="margin-top:36px;display:none">Legacy Projects</div>
+      <div class="projects-grid" id="projects-grid-legacy">
         <div class="projects-loading">Loading projects…</div>
       </div>
     </section>
@@ -484,6 +487,8 @@
 
     const GITHUB_USERNAME = 'shukla100';
     const grid = document.getElementById('projects-grid');
+    const legacyGrid = document.getElementById('projects-grid-legacy');
+    const legacyTitle = document.getElementById('legacy-title');
 
     const HIDDEN = ['PortfolioProjects'];
 
@@ -492,11 +497,12 @@
         name: 'PhotoWhere',
         description: 'An iOS app that helps photographers of all levels discover beautiful, photo-worthy locations near them based on their exact location and time of day. Live on the App Store.',
         url: 'https://apps.apple.com/us/app/photowhere-snap-smarter/id6748592837',
-        icon: '📸',
-        iconBg: '#fff0e6'
+        icon: '🗺️',
+        iconBg: '#e8f4f0',
+        legacy: true
       },
       'happyLearning': {
-        description: 'A personal AI-powered learning companion that maps your curiosity — you follow topics wherever your mind goes, and it builds a visual brain map of everything you\'ve explored, remembers it across sessions, and gets smarter about what you know and don\'t know over time.',
+        description: 'A personal AI-powered learning companion that maps your curiosity. You follow topics wherever your mind goes, and it builds a visual brain map of everything you\'ve explored, remembers it across sessions, and gets smarter about what you know and don\'t know over time.',
         icon: '🧠',
         iconBg: '#f0f0ff',
         hideLanguage: true
@@ -531,7 +537,7 @@
           return;
         }
 
-        grid.innerHTML = filtered.map(repo => {
+        const renderCard = repo => {
           const ov = OVERRIDES[repo.name] || {};
           const name = ov.name || repo.name;
           const description = ov.description || repo.description;
@@ -559,7 +565,17 @@
                 </div>
               </div>
             </a>`;
-        }).join('');
+        };
+
+        const active = filtered.filter(r => !(OVERRIDES[r.name] || {}).legacy);
+        const legacy = filtered.filter(r => (OVERRIDES[r.name] || {}).legacy);
+
+        grid.innerHTML = active.map(renderCard).join('');
+
+        if (legacy.length > 0) {
+          legacyTitle.style.display = 'block';
+          legacyGrid.innerHTML = legacy.map(renderCard).join('');
+        }
       } catch (err) {
         grid.innerHTML = `<div class="projects-error">Couldn't load projects. <a href="https://github.com/${GITHUB_USERNAME}" target="_blank">View on GitHub ↗</a></div>`;
       }
