@@ -53,6 +53,12 @@
       color: var(--accent);
     }
 
+    .header-text .role {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
     /* ── Tabs ── */
     nav {
       padding: 24px 0 0;
@@ -121,16 +127,17 @@
     }
 
     .profile-strip img {
-      width: 56px;
-      height: 56px;
+      width: 168px;
+      height: 168px;
       border-radius: 10px;
       object-fit: cover;
       border: 1px solid var(--border);
     }
 
     .profile-strip .role {
-      font-size: 1rem;
-      color: var(--muted);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
     }
 
     /* ── About bio ── */
@@ -328,6 +335,7 @@
     <header>
       <div class="header-text">
         <h1>Garima Shukla</h1>
+        <div class="role">AI Product Manager</div>
       </div>
     </header>
 
@@ -352,7 +360,7 @@
         These days I'm at VAE, building AI systems architecture, driving MCP server deployments, and laying the infrastructure to connect it all securely.
       </p>
       <p class="about-bio-extra">
-        In my spare time I explore different AI tools to build products and experiences that are currently used by a handful of users.
+        In my spare time I explore different AI tools to build products and experiences that are currently used by a handful, but growing number of users.
       </p>
 
       <div class="info-box">
