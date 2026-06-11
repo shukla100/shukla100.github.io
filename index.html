@@ -6,7 +6,7 @@
   <title>Garima Shukla</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -46,56 +46,11 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .header-inner {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
     .header-text h1 {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       font-weight: 600;
       letter-spacing: -0.02em;
       color: var(--accent);
-    }
-
-    .header-text .role {
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    /* ── Info box ── */
-    .info-box {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px 22px;
-      background: #fafafa;
-      margin-bottom: 36px;
-    }
-
-    .info-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    .info-row svg {
-      width: 17px;
-      height: 17px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex-shrink: 0;
-      opacity: 0.7;
     }
 
     /* ── Tabs ── */
@@ -157,17 +112,72 @@
       display: block;
     }
 
-    /* ── About ── */
+    /* ── Profile strip ── */
+    .profile-strip {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .profile-strip img {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    .profile-strip .role {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    /* ── About bio ── */
     .about-bio {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .about-bio-extra {
       font-size: 1.05rem;
       color: var(--muted);
       line-height: 1.75;
       margin-bottom: 36px;
     }
 
-    .about-bio strong {
-      color: var(--text);
-      font-weight: 500;
+    /* ── Info box ── */
+    .info-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+      background: var(--bg);
+      margin-bottom: 36px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .info-row svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      opacity: 0.7;
     }
 
     /* ── Let's Connect box ── */
@@ -316,11 +326,8 @@
 
     <!-- Header -->
     <header>
-      <div class="header-inner">
-        <div class="header-text">
-          <h1>Garima Shukla</h1>
-          <div class="role">AI Product Manager</div>
-        </div>
+      <div class="header-text">
+        <h1>Garima Shukla</h1>
       </div>
     </header>
 
@@ -334,13 +341,22 @@
 
     <!-- About Panel -->
     <section class="tab-panel active" id="tab-about">
+
+      <!-- Profile pic + role -->
+      <div class="profile-strip">
+        <img id="github-avatar" src="https://github.com/shukla100.png" alt="Garima Shukla" />
+        <div class="role">AI Product Manager</div>
+      </div>
+
       <p class="about-bio">
-        These days I'm at <strong>VAE</strong>, designing AI systems architecture, building MCP servers, and wiring it all together from the ground up.
+        These days I'm at VAE, building AI systems architecture, driving MCP server deployments, and laying the infrastructure to connect it all securely.
+      </p>
+      <p class="about-bio-extra">
+        In my spare time I explore different AI tools to build products and experiences that are currently used by a handful of users.
       </p>
 
       <div class="info-box">
         <div class="info-row">
-          <!-- Location pin icon -->
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
             <circle cx="12" cy="9" r="2.5"/>
@@ -348,7 +364,6 @@
           San Diego, USA
         </div>
         <div class="info-row">
-          <!-- Graduation cap icon -->
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M22 9L12 4 2 9l10 5 10-5z"/>
             <path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/>
@@ -399,7 +414,6 @@
   </div>
 
   <script>
-    // ── Tab switching ──
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanels = document.querySelectorAll('.tab-panel');
 
@@ -412,7 +426,6 @@
       });
     });
 
-    // ── GitHub Projects ──
     const GITHUB_USERNAME = 'shukla100';
     const grid = document.getElementById('projects-grid');
 
